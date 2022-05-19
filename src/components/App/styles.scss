@@ -1,6 +1,12 @@
 // Ajout du fichier de variables
 @use 'src/styles/vars';
 
+.app {
+ display: flex;
+ flex-direction: column;
+ align-content: space-between;
+}
+
 .main {
   padding: 2em;
   display: flex;
