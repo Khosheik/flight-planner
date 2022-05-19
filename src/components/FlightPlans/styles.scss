@@ -1,14 +1,13 @@
 // Ajout du fichier de variables
 @use 'src/styles/vars';
 
+//== FLIGHT PLANS
 .flight-plans {
   min-width: 20%;
   background-color: vars.$light-color;
   border-radius: 5px;
   
-
   &--title {
-    
     padding: 1.5em 1em 1em 1em;
     font-weight: 600;
     text-align: center;
@@ -20,24 +19,26 @@
 
   &--list {
     padding: 0.5em;
+  }
+}
 
-    &--item {
-      background-color: vars.$background-color;
-      margin-bottom: 0.5em;
-      padding: 1em;
-      border-radius: 3px;
-      color: vars.$dark-color;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+// == FLIGTH CARD
+.flight-card {
+  background-color: vars.$background-color;
+  margin-bottom: 0.5em;
+  padding: 1em;
+  border-radius: 3px;
+  color: vars.$dark-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-      &:hover {
-        background-color: vars.$accent-color;
-      }
+  &:hover {
+    background-color: vars.$accent-color;
+    cursor: pointer;
+  }
 
-      &--delete {
-        font-size: 0.7em;
-      }
-    }
+  &--delete {
+    font-size: 0.7em;
   }
 }
