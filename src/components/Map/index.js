@@ -6,9 +6,10 @@ import PropTypes from 'prop-types';
 
 // == Imports locaux
 import './styles.scss';
+import LausanneMap from 'src/assets/images/lausanne.jpg';
 
 const Map = ({ prop1 }) => (
-  <div>Map</div>
+  <canvas className="map" style={{ backgroundImage: `url('${LausanneMap}')` }} />
 );
 
 Map.propTypes = {
