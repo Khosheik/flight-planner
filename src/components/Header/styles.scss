@@ -1,0 +1,16 @@
+// Ajout du fichier de variables
+@use 'src/styles/vars';
+
+.header {
+  padding: 1em 2em; 
+  background-color: vars.$dark-color;
+  
+  &--title {
+    font-size: 1.2em;
+    color: vars.$light-color;
+
+    &--span {
+      font-size: 0.5em;;
+    }
+  }
+}

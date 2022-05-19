@@ -3,16 +3,20 @@ import React from 'react';
 
 // == Import
 import './styles.scss';
+import Header from 'src/components/Header';
+import Footer from 'src/components/Footer';
+import Map from 'src/components/Map';
+import FlightPlans from 'src/components/FlightPlans';
 
 // == Composant
 const App = () => (
   <div className="app">
-    <header />
+    <Header />
     <main>
-      <div>map</div>
-      <div>flight plans</div>
+      <Map />
+      <FlightPlans />
     </main>
-    <footer />
+    <Footer />
   </div>
 );
 
