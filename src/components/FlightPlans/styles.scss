@@ -1,0 +1,39 @@
+// Ajout du fichier de variables
+@use 'src/styles/vars';
+
+.flight-plans {
+  min-width: 20%;
+  background-color: vars.$light-color;
+  border-radius: 5px;
+  
+
+  &--title {
+    
+    padding: 1em;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: vars.$light-color;
+    color: vars.$dark-color;
+    border-radius: 5px;
+  }
+
+  &--list {
+    padding: 0.5em;
+
+    &--item {
+      background-color: vars.$accent-color;
+      margin-bottom: 0.5em;
+      padding: 1em;
+      border-radius: 3px;
+      color: vars.$dark-color;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &--delete {
+        font-size: 0.7em;
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@ import FlightPlans from 'src/components/FlightPlans';
 const App = () => (
   <div className="app">
     <Header />
-    <main>
+    <main className="main">
       <Map />
       <FlightPlans />
     </main>
