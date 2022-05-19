@@ -5,5 +5,9 @@
   width: 70%;
   background-color: vars.$light-color;
   border-radius: 5px;
-  
+  border: 1em solid vars.$light-color;
+  background-size: 100%;
+  background-repeat: no-repeat; 
+  height: min-content;
+   
 }

@@ -22,7 +22,7 @@
     padding: 0.5em;
 
     &--item {
-      background-color: vars.$accent-color;
+      background-color: vars.$background-color;
       margin-bottom: 0.5em;
       padding: 1em;
       border-radius: 3px;
@@ -30,6 +30,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      &:hover {
+        background-color: vars.$accent-color;
+      }
 
       &--delete {
         font-size: 0.7em;
