@@ -64,8 +64,15 @@ const Map = ({ prop1 }) => {
     setPoints((prevState) => [...prevState, x, y]);
   };
 
+  const handleButtonClick = () => {
+    setPoints([]);
+  };
+
   return (
-    <div className="map" id="canvas" style={{ backgroundImage: `url('${LausanneMap}')` }} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}> Canvas </div>
+    <div className="map">
+      <div className="map--top"><input type="button" value="Clear the map" className="map--top--button" onClick={handleButtonClick} /></div>
+      <div className="map--canvas" id="canvas" style={{ backgroundImage: `url('${LausanneMap}')` }} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}> Canvas </div>
+    </div>
   );
 };
 

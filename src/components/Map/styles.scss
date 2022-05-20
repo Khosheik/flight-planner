@@ -2,12 +2,33 @@
 @use 'src/styles/vars';
 
 .map {
+
+  &--canvas {
   width: 900px;
   background-color: vars.$light-color;
   border-radius: 5px;
+  border-top-right-radius: 0;
   background-size: 100%;
   background-repeat: no-repeat; 
-  height: 550px;
-  
+  height: 590px;
+  }
+
+  &--top {
+    display: flex;
+    justify-content: flex-end;
+
+    &--button {
+    border: none;
+    background-color: vars.$background-color;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    text-transform: uppercase;
+    padding: 0.5em;
+    cursor: pointer;
+    font-weight: 500;
+    }
+    
+    
+  }
    
 }

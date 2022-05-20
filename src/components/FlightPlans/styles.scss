@@ -7,7 +7,7 @@
   background-color: vars.$light-color;
   border-radius: 5px;
   margin-left: 2em;
-  min-height: 80%;
+  min-height: 70%;
   
   &--title {
     padding: 1.5em 1em 1em 1em;
@@ -38,6 +38,7 @@
   &:hover {
     background-color: vars.$accent-color;
     cursor: pointer;
+    color: vars.$light-color;
   }
 
   &--delete {

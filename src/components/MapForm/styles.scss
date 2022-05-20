@@ -1,0 +1,40 @@
+// Ajout du fichier de variables
+@use 'src/styles/vars';
+
+.map-form {
+  padding: 1em;
+  background-color: vars.$light-color;
+  margin-top: 1em;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+
+  &--name {
+    flex-grow: 4;
+    margin-right: 0.5em;
+    background-color: vars.$background-color;
+    border: none;
+    border-radius: 3px;
+  }
+
+  &--save {
+    border: none;
+    background-color: vars.$accent-color;
+    border-radius: 3px;
+    text-transform: uppercase;
+    padding: 0.5em;
+    cursor: pointer;
+    color: vars.$light-color;
+    font-weight: 600;
+  }
+
+  // &--clear {
+  //   border: none;
+  //   background-color: vars.$background-color;
+  //   border-radius: 3px;
+  //   margin-right: 0.5em;
+  //   text-transform: uppercase;
+  //   padding: 0.5em;
+  //   cursor: pointer;
+  // }
+}

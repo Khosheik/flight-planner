@@ -15,4 +15,10 @@
   justify-content: center;
   min-height: 90vh;
   background-color: vars.$basic-color;
+
+  &--left-column {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+  }
 }
