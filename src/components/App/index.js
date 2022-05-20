@@ -43,9 +43,10 @@ const App = () => {
     const y = clientY - canvas.offsetTop;
 
     // if the state is empty, it's the starting point, no need to use the prevState
-    if (points.length < 1) {
-      setPoints([x, y]);
-    }
+    // (if line follows mouse)
+    // if (points.length < 1) {
+    //   setPoints([x, y]);
+    // }
   };
 
   const handleMouseUpOnMap = (event) => {
@@ -77,6 +78,7 @@ const App = () => {
       points: coordinates,
     };
     setFlightPlans((prevState) => [...prevState, newFlightPlan]);
+    setInputValue('');
   };
 
   const handleMapSubmit = (event) => {

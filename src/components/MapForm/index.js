@@ -9,7 +9,7 @@ import './styles.scss';
 
 const MapForm = ({ handleOnSubmit, handleChange, inputValue }) => (
   <form className="map-form">
-    <input type="text" placeholder="Entrez un nom" className="map-form--name" value={inputValue} onChange={handleChange} />
+    <input type="text" placeholder="Enter a name for this flight plan" className="map-form--name" value={inputValue} onChange={handleChange} />
     <input type="button" value="Save the flight plan" className="map-form--save" onClick={handleOnSubmit} />
   </form>
 

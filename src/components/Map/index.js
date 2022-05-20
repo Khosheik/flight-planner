@@ -9,7 +9,9 @@ import Konva from 'konva';
 import './styles.scss';
 import LausanneMap from 'src/assets/images/lausanne.jpg';
 
-const Map = ({ handleMouseDown, handleMouseUp, points, handleClearButtonClick }) => {
+const Map = ({
+  handleMouseDown, handleMouseUp, points, handleClearButtonClick,
+}) => {
   useLayoutEffect(() => {
     const canvas = document.getElementById('canvas');
     const width = canvas.offsetWidth;
@@ -31,6 +33,25 @@ const Map = ({ handleMouseDown, handleMouseUp, points, handleClearButtonClick })
       strokeWidth: 3,
     });
     layer.add(redLine);
+
+    // divide points by pair of coordinates
+    const pointsPairs = points.reduce((result, value, index, array) => {
+      if (index % 2 === 0) {
+        return [...result, array.slice(index, index + 2)];
+      }
+      return result;
+    }, []);
+
+    pointsPairs.forEach((pair) => {
+      console.log('pair', pair);
+      const redDot = new Konva.Circle({
+        x: pair[0],
+        y: pair[1],
+        radius: 5,
+        fill: 'red',
+      });
+      layer.add(redDot);
+    });
   }, [points]);
 
   return (
