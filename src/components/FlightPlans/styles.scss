@@ -17,6 +17,17 @@
     background-color: vars.$light-color;
     color: vars.$dark-color;
     border-radius: 5px;
+    position: relative;
+
+    &--delete {
+      font-size: 0.7em;
+      margin-left: 1em;
+      position: absolute;
+      top: 0.7em;
+      right: 0.7em;
+      color: #FFB703;
+      cursor: pointer;
+    }
   }
 
   &--list {

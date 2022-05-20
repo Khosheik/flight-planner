@@ -1,5 +1,7 @@
 // == Import npm
 import React, { useState } from 'react';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // == Import
 import './styles.scss';
@@ -98,6 +100,27 @@ const App = () => {
     setFlightPlans(filteredFlightPlans);
   };
 
+  const handleDeleteAllFlightPlans = () => {
+    setFlightPlans([]);
+  };
+
+  const submitDeleteFightCard = () => {
+    confirmAlert({
+      title: '⚠ Delete all flight plans',
+      message: 'Are you sure about deleting all flight plans?',
+      buttons: [
+        {
+          label: 'Delete',
+          onClick: handleDeleteAllFlightPlans,
+        },
+        {
+          label: 'Cancel',
+          // onClick: () => alert('Click No'),
+        },
+      ],
+    });
+  };
+
   return (
     <div className="app">
       <Header />
@@ -119,6 +142,7 @@ const App = () => {
           flightPlans={flightPlans}
           handleDeleteFlightCard={handleDeleteFlightCard}
           handleOnClick={handleOnClickFlightCard}
+          handleDeleteAll={submitDeleteFightCard}
         />
       </main>
       <Footer />

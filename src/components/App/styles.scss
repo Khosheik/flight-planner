@@ -22,3 +22,42 @@
     align-content: space-between;
   }
 }
+
+// == Customisation of confirm modal
+.react-confirm-alert {
+  &-body { 
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 550px;
+    padding: 30px;
+    text-align: center;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 20px 75px rgb(0 0 0 / 13%);
+    color: vars.$dark-color;
+
+    h1 {
+      font-weight: bold;
+      text-align: center;
+      display: block;
+      font-size: 1.6em;
+      margin-block-start: 0.67em;
+      margin-block-end: 0.67em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      color: #FFB703;
+    }
+  }
+
+  &-button-group {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+    button {
+     background-color: vars.$dark-color;
+     font-weight: bold;
+     text-transform: capitalize;
+    }
+    
+  }
+}
