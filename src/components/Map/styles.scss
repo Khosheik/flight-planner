@@ -10,7 +10,7 @@
   border-top-right-radius: 0;
   background-size: 100%;
   background-repeat: no-repeat; 
-  height: 590px;
+  height: 550px;
   }
 
   &--top {
@@ -26,6 +26,11 @@
     padding: 0.5em;
     cursor: pointer;
     font-weight: 500;
+
+    &:hover {
+      background-color: vars.$accent-color;
+      color: vars.$light-color;
+    }
     }
     
     

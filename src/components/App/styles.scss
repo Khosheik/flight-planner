@@ -13,8 +13,8 @@
   padding: 2em;
   display: flex;
   justify-content: center;
-  min-height: 90vh;
   background-color: vars.$basic-color;
+  flex-grow: 4;
 
   &--left-column {
     display: flex;

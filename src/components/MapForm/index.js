@@ -7,21 +7,22 @@ import PropTypes from 'prop-types';
 // == Imports locaux
 import './styles.scss';
 
-const MapForm = ({ prop1 }) => (
+const MapForm = ({ handleOnSubmit, handleChange, inputValue }) => (
   <form className="map-form">
-    <input type="text" placeholder="Entrez un nom" className="map-form--name" />
-    <input type="submit" value="Save the flight plan" className="map-form--save" />
-    {/* <input type="button" value="Clear the map" className="map-form--clear" /> */}
+    <input type="text" placeholder="Entrez un nom" className="map-form--name" value={inputValue} onChange={handleChange} />
+    <input type="button" value="Save the flight plan" className="map-form--save" onClick={handleOnSubmit} />
   </form>
 
 );
 
 MapForm.propTypes = {
-  prop1: PropTypes.string,
+  handleChange: PropTypes.func.isRequired,
+  handleOnSubmit: PropTypes.func.isRequired,
+  inputValue: PropTypes.string,
 };
 
 MapForm.defaultProps = {
-  prop1: '',
+  inputValue: '',
 };
 
 export default MapForm;
