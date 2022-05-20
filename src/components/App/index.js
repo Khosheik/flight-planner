@@ -27,10 +27,15 @@ const App = () => {
     { id: 2, name: 'Flight WTF', points: [434, 222, 529, 174, 533, 172] },
   ]);
 
+  const [isEmpty, setIsEmpty] = useState(false);
+
   // ensure id isnt already taken when creating
   const getHighestId = () => {
-    const ids = flightPlans.map((flightplan) => flightplan.id);
-    return Math.max(...ids);
+    if (!isEmpty) {
+      const ids = flightPlans.map((flightplan) => flightplan.id);
+      return Math.max(...ids);
+    }
+    return 0;
   };
 
   // == Functions tied to the map => gets the points to trace the lines
@@ -81,6 +86,7 @@ const App = () => {
     };
     setFlightPlans((prevState) => [...prevState, newFlightPlan]);
     setInputValue('');
+    setIsEmpty(false);
   };
 
   const handleMapSubmit = (event) => {
@@ -98,10 +104,14 @@ const App = () => {
     // filter by id to delete the flight plan
     const filteredFlightPlans = flightPlans.filter((plan) => plan.id !== id);
     setFlightPlans(filteredFlightPlans);
+    if (filteredFlightPlans.length === 0) {
+      setIsEmpty(true);
+    }
   };
 
   const handleDeleteAllFlightPlans = () => {
     setFlightPlans([]);
+    setIsEmpty(true);
   };
 
   const submitDeleteFightCard = () => {
@@ -143,6 +153,7 @@ const App = () => {
           handleDeleteFlightCard={handleDeleteFlightCard}
           handleOnClick={handleOnClickFlightCard}
           handleDeleteAll={submitDeleteFightCard}
+          isEmpty={isEmpty}
         />
       </main>
       <Footer />

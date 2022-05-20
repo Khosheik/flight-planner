@@ -1,5 +1,5 @@
 // == Import de la lib React
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect } from 'react';
 
 // == Imports NPM
 import PropTypes from 'prop-types';
@@ -63,11 +63,14 @@ const Map = ({
 };
 
 Map.propTypes = {
-  prop1: PropTypes.string,
+  handleMouseDown: PropTypes.func.isRequired,
+  handleMouseUp: PropTypes.func.isRequired,
+  points: PropTypes.array,
+  handleClearButtonClick: PropTypes.func.isRequired,
 };
 
 Map.defaultProps = {
-  prop1: '',
+  points: [],
 };
 
 export default Map;

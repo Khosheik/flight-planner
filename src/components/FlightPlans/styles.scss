@@ -33,6 +33,19 @@
   &--list {
     padding: 0.5em;
   }
+
+  &--empty {
+    background-color: vars.$background-color;
+    padding: 1em;
+    border-radius: 3px;
+    color: vars.$dark-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5em;
+    font-size: 0.75em;
+    text-align: center;
+  }
 }
 
 // == FLIGTH CARD

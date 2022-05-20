@@ -9,28 +9,43 @@ import { ImCross } from 'react-icons/im';
 import './styles.scss';
 import FlightCard from './FlightCard';
 
-const FlightPlans = ({ flightPlans, handleDeleteFlightCard, handleOnClick, handleDeleteAll }) => (
-  <div className="flight-plans">
-    <h2 className="flight-plans--title">Drone Flight Plans <span className="flight-plans--title--delete" onClick={handleDeleteAll}><ImCross /></span></h2>
-    <ul className="flight-plans--list">
-      {flightPlans.map((flight) => (
-        <FlightCard
-          {...flight}
-          key={flight.id}
-          handleDelete={handleDeleteFlightCard}
-          handleOnClick={handleOnClick}
-        />
-      ))}
-    </ul>
-  </div>
-);
+const FlightPlans = ({
+  flightPlans, handleDeleteFlightCard, handleOnClick, handleDeleteAll, isEmpty,
+}) => {
+  console.log('fp');
+
+  return (
+    <div className="flight-plans">
+      <h2 className="flight-plans--title">Drone Flight Plans <span className="flight-plans--title--delete" onClick={handleDeleteAll}><ImCross /></span></h2>
+      {isEmpty && (
+        <div className="flight-plans--empty">No flight plans, please create one</div>
+      )}
+      {!isEmpty && (
+      <ul className="flight-plans--list">
+        {flightPlans.map((flight) => (
+          <FlightCard
+            {...flight}
+            key={flight.id}
+            handleDelete={handleDeleteFlightCard}
+            handleOnClick={handleOnClick}
+          />
+        ))}
+      </ul>
+      )}
+    </div>
+  );
+};
 
 FlightPlans.propTypes = {
-  prop1: PropTypes.string,
+  flightPlans: PropTypes.array,
+  handleDeleteFlightCard: PropTypes.func.isRequired,
+  handleOnClick: PropTypes.func.isRequired,
+  handleDeleteAll: PropTypes.func.isRequired,
+  isEmpty: PropTypes.bool.isRequired,
 };
 
 FlightPlans.defaultProps = {
-  prop1: '',
+  flightPlans: [],
 };
 
 export default FlightPlans;
