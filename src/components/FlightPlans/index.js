@@ -9,12 +9,12 @@ import './styles.scss';
 // import flights from 'src/data/flights';
 import FlightCard from './FlightCard';
 
-const FlightPlans = ({ flightPlans }) => (
+const FlightPlans = ({ flightPlans, handleDeleteFlightCard }) => (
   <div className="flight-plans">
     <h2 className="flight-plans--title">Drone Flight Plans</h2>
     <ul className="flight-plans--list">
       {flightPlans.map((flight) => (
-        <FlightCard {...flight} key={flight.id} />
+        <FlightCard {...flight} key={flight.id} handleDelete={handleDeleteFlightCard} />
       ))}
     </ul>
   </div>

@@ -15,6 +15,9 @@ const App = () => {
   // value (name) in the form to had a flight
   const [inputValue, setInputValue] = useState('');
 
+  // corrdinates for the lines
+  const [points, setPoints] = useState([]);
+
   // local storage of the flight plans
   const [flightPlans, setFlightPlans] = useState([
     { id: 0, name: 'Flight 1', points: [182, 84, 182, 84, 499, 81, 472, 145, 298, 146, 387, 73] },
@@ -22,8 +25,11 @@ const App = () => {
     { id: 2, name: 'Flight WTF', points: [434, 222, 529, 174, 533, 172] },
   ]);
 
-  // corrdinates for the lines
-  const [points, setPoints] = useState([]);
+  // ensure id isnt already taken when creating
+  const getHighestId = () => {
+    const ids = flightPlans.map((flightplan) => flightplan.id);
+    return Math.max(...ids);
+  };
 
   // == Functions tied to the map => gets the points to trace the lines
   const handleMouseDownOnMap = (event) => {
@@ -49,7 +55,6 @@ const App = () => {
     // to compensate for the offset
     const x = clientX - canvas.offsetLeft;
     const y = clientY - canvas.offsetTop;
-    console.log('ici', x, y);
     // we push the new coordonates to trace the line
     setPoints((prevState) => [...prevState, x, y]);
   };
@@ -64,19 +69,26 @@ const App = () => {
   };
 
   const createFlightPlan = (name, coordinates) => {
+    const highestId = getHighestId();
+    const newId = highestId + 1;
     const newFlightPlan = {
-      id: 7,
+      id: newId,
       name: name,
       points: coordinates,
     };
-    console.log(newFlightPlan);
     setFlightPlans((prevState) => [...prevState, newFlightPlan]);
   };
 
   const handleMapSubmit = (event) => {
     event.preventDefault();
-    console.log(inputValue);
     createFlightPlan(inputValue, points);
+  };
+
+  // == Function tied to the flight plan column
+  const handleDeleteFlightCard = (id) => {
+    // filter by id to delete the flight plan
+    const filteredFlightPlans = flightPlans.filter((plan) => plan.id !== id);
+    setFlightPlans(filteredFlightPlans);
   };
 
   return (
@@ -96,7 +108,7 @@ const App = () => {
             inputValue={inputValue}
           />
         </div>
-        <FlightPlans flightPlans={flightPlans} />
+        <FlightPlans flightPlans={flightPlans} handleDeleteFlightCard={handleDeleteFlightCard} />
       </main>
       <Footer />
     </div>

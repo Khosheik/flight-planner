@@ -8,10 +8,10 @@ import { ImCross } from 'react-icons/im';
 // == Imports locaux
 import './styles.scss';
 
-const FlightCard = ({ name }) => (
+const FlightCard = ({ name, id, handleDelete }) => (
   <li className="flight-card">
     <div className="flight-card--name">{name}</div>
-    <div className="flight-card--delete"><ImCross /></div>
+    <div className="flight-card--delete" onClick={() => handleDelete(id)}><ImCross /></div>
   </li>
 );
 
