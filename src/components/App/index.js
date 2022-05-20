@@ -87,6 +87,11 @@ const App = () => {
   };
 
   // == Function tied to the flight plan column
+  const handleOnClickFlightCard = (id) => {
+    const clickedFlightPlan = flightPlans.find((flightPlan) => flightPlan.id === id);
+    setPoints(clickedFlightPlan.points);
+  };
+
   const handleDeleteFlightCard = (id) => {
     // filter by id to delete the flight plan
     const filteredFlightPlans = flightPlans.filter((plan) => plan.id !== id);
@@ -110,7 +115,11 @@ const App = () => {
             inputValue={inputValue}
           />
         </div>
-        <FlightPlans flightPlans={flightPlans} handleDeleteFlightCard={handleDeleteFlightCard} />
+        <FlightPlans
+          flightPlans={flightPlans}
+          handleDeleteFlightCard={handleDeleteFlightCard}
+          handleOnClick={handleOnClickFlightCard}
+        />
       </main>
       <Footer />
     </div>
