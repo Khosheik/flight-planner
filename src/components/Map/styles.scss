@@ -2,13 +2,12 @@
 @use 'src/styles/vars';
 
 .map {
-  width: 70%;
+  width: 900px;
   background-color: vars.$light-color;
   border-radius: 5px;
-  border: 1em solid vars.$light-color;
   background-size: 100%;
   background-repeat: no-repeat; 
-  min-height: 500px;
+  height: 550px;
   
    
 }

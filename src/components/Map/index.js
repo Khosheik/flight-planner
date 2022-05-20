@@ -9,26 +9,15 @@ import Konva from 'konva';
 import './styles.scss';
 import LausanneMap from 'src/assets/images/lausanne.jpg';
 
-// function createElement(x1, y1, x2, y2) {
-//   const konvaElement = new Konva.Line({
-//     points: [x1, y1, x2, y2],
-//     stroke: 'blue',
-//     strokeWidth: 15,
-//   });
-//   return {
-//     x1, y1, x2, y2, konvaElement,
-//   };
-// }
-
 const Map = ({ prop1 }) => {
   const [points, setPoints] = useState([]);
-  const [drawing, setDrawing] = useState(false);
 
   useLayoutEffect(() => {
     const canvas = document.getElementById('canvas');
     const width = canvas.offsetWidth;
-    const height = 500;
+    const height = canvas.offsetHeight;
 
+    // setting up the line drawing with Konva
     const stage = new Konva.Stage({
       container: 'canvas',
       width: width,
@@ -41,59 +30,42 @@ const Map = ({ prop1 }) => {
     const redLine = new Konva.Line({
       points: points,
       stroke: 'red',
-      strokeWidth: 2,
+      strokeWidth: 3,
     });
     layer.add(redLine);
   }, [points]);
 
   const handleMouseDown = (event) => {
-    console.log('x down', event.clientX);
-    console.log('y down', event.clientY);
-    setDrawing(true);
+    const canvas = document.getElementById('canvas');
+
+    // get the coordinate of the mouse within client
     const { clientX, clientY } = event;
 
-    // to compensate for the shift (decalage)
-    const x = clientX - 88;
-    const y = clientY - 20;
+    // to compensate for the offset
+    const x = clientX - canvas.offsetLeft;
+    const y = clientY - canvas.offsetTop;
 
+    // if the state is empty, it's the starting point, no need to use the prevState
     if (points.length < 1) {
-      setPoints((prevState) => [...prevState, x, y]);
+      setPoints([x, y]);
     }
     console.log(points);
   };
 
-  const handleMouseMove = (event) => {
-    // if we're not drawing, we don't need to track
-    if (!drawing) return;
-
-    // const { clientX, clientY } = event;
-
-    // // to compensate for the shift (decalage)
-    // const x = clientX - 88;
-    // const y = clientY - 25;
-
-    // console.log('x move', clientX);
-    // console.log('y move', clientY);
-
-    // setPoints((prevState) => [...prevState, x, y]);
-  };
-
   const handleMouseUp = (event) => {
+    const canvas = document.getElementById('canvas');
     const { clientX, clientY } = event;
 
-    // to compensate for the shift (decalage)
-    const x = clientX - 88;
-    const y = clientY - 25;
+    // to compensate for the offset
+    const x = clientX - canvas.offsetLeft;
+    const y = clientY - canvas.offsetTop;
 
-    console.log('x move', clientX);
-    console.log('y move', clientY);
-
+    // we push the new coordonates to trace the line
     setPoints((prevState) => [...prevState, x, y]);
-    setDrawing(false);
   };
 
   return (
-    <div className="map" id="canvas" style={{ backgroundImage: `url('${LausanneMap}')` }} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}> Canvas </div>
+    <div className="map" id="canvas" style={{ backgroundImage: `url('${LausanneMap}')` }} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}> Canvas </div>
   );
 };
 
