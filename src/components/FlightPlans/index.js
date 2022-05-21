@@ -11,16 +11,13 @@ import FlightCard from './FlightCard';
 
 const FlightPlans = ({
   flightPlans, handleDeleteFlightCard, handleOnClick, handleDeleteAll, isEmpty,
-}) => {
-  console.log('fp');
-
-  return (
-    <div className="flight-plans">
-      <h2 className="flight-plans--title">Drone Flight Plans <span className="flight-plans--title--delete" onClick={handleDeleteAll}><ImCross /></span></h2>
-      {isEmpty && (
-        <div className="flight-plans--empty">No flight plans, please create one</div>
-      )}
-      {!isEmpty && (
+}) => (
+  <div className="flight-plans">
+    <h2 className="flight-plans--title">Drone Flight Plans <span className="flight-plans--title--delete" onClick={handleDeleteAll}><ImCross /></span></h2>
+    {isEmpty && (
+    <div className="flight-plans--empty">No flight plans, please create one</div>
+    )}
+    {!isEmpty && (
       <ul className="flight-plans--list">
         {flightPlans.map((flight) => (
           <FlightCard
@@ -31,10 +28,9 @@ const FlightPlans = ({
           />
         ))}
       </ul>
-      )}
-    </div>
-  );
-};
+    )}
+  </div>
+);
 
 FlightPlans.propTypes = {
   flightPlans: PropTypes.array,

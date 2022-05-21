@@ -1,7 +1,7 @@
 // Ajout du fichier de variables
 @use 'src/styles/vars';
 
-//== FLIGHT PLANS
+// == FLIGHT PLANS
 .flight-plans {
   min-width: 20%;
   background-color: vars.$light-color;
@@ -67,6 +67,7 @@
 
   &--delete {
     font-size: 0.7em;
+    padding: 0.5em;
     z-index: 2;
   }
 }

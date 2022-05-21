@@ -1,19 +1,20 @@
 // == Import npm
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-// == Import
+// == Import locaux
 import './styles.scss';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
 import Map from 'src/components/Map';
 import FlightPlans from 'src/components/FlightPlans';
 import MapForm from 'src/components/MapForm';
+import data from 'src/data/flights';
 
 // == Composant
 const App = () => {
-  // == states
+  // == STATES
   // value (name) in the form to had a flight
   const [inputValue, setInputValue] = useState('');
 
@@ -21,14 +22,17 @@ const App = () => {
   const [points, setPoints] = useState([]);
 
   // local storage of the flight plans
-  const [flightPlans, setFlightPlans] = useState([
-    { id: 0, name: 'Flight 1', points: [182, 84, 182, 84, 499, 81, 472, 145, 298, 146, 387, 73] },
-    { id: 1, name: 'Flight 3', points: [298, 146, 387, 73, 273, 159] },
-    { id: 2, name: 'Flight WTF', points: [434, 222, 529, 174, 533, 172] },
-  ]);
+  const [flightPlans, setFlightPlans] = useState([]);
 
   const [isEmpty, setIsEmpty] = useState(false);
 
+  // == Component did mount
+  useEffect(() => {
+    // here would be the call to the back to get the data
+    setFlightPlans(data);
+  }, []);
+
+  // == FUNCTIONS
   // ensure id isnt already taken when creating
   const getHighestId = () => {
     if (!isEmpty) {
@@ -39,23 +43,7 @@ const App = () => {
   };
 
   // == Functions tied to the map => gets the points to trace the lines
-  const handleMouseDownOnMap = (event) => {
-    const canvas = document.getElementById('canvas');
-
-    // get the coordinate of the mouse within client
-    const { clientX, clientY } = event;
-
-    // to compensate for the offset
-    const x = clientX - canvas.offsetLeft;
-    const y = clientY - canvas.offsetTop;
-
-    // if the state is empty, it's the starting point, no need to use the prevState
-    // (if line follows mouse)
-    // if (points.length < 1) {
-    //   setPoints([x, y]);
-    // }
-  };
-
+  // handles the release of the mouse to give the coordinate
   const handleMouseUpOnMap = (event) => {
     const canvas = document.getElementById('canvas');
     const { clientX, clientY } = event;
@@ -67,15 +55,18 @@ const App = () => {
     setPoints((prevState) => [...prevState, x, y]);
   };
 
+  // clear the map of lines and points
   const handleClearButtonClickOnMap = () => {
     setPoints([]);
   };
 
   // == Functions tied to the map form => gets the name of the flight plan
+  // handles the input value in the form to creat a new flight plan
   const handleChangeMapForm = (event) => {
     setInputValue(event.target.value);
   };
 
+  // create a new flight plan with the name info and shows it on the right column
   const createFlightPlan = (name, coordinates) => {
     const highestId = getHighestId();
     const newId = highestId + 1;
@@ -89,31 +80,37 @@ const App = () => {
     setIsEmpty(false);
   };
 
+  // handle the creation of the new flight plan when the button save is clicked
   const handleMapSubmit = (event) => {
     event.preventDefault();
     createFlightPlan(inputValue, points);
   };
 
   // == Function tied to the flight plan column
+  // shows the lines/points on the map when the card is clicked
   const handleOnClickFlightCard = (id) => {
     const clickedFlightPlan = flightPlans.find((flightPlan) => flightPlan.id === id);
     setPoints(clickedFlightPlan.points);
   };
 
+  // delete a flight card from the column
   const handleDeleteFlightCard = (id) => {
     // filter by id to delete the flight plan
     const filteredFlightPlans = flightPlans.filter((plan) => plan.id !== id);
+
     setFlightPlans(filteredFlightPlans);
     if (filteredFlightPlans.length === 0) {
       setIsEmpty(true);
     }
   };
 
+  // delete all flights
   const handleDeleteAllFlightPlans = () => {
     setFlightPlans([]);
     setIsEmpty(true);
   };
 
+  // confirmation modal for deleting all flights
   const submitDeleteFightCard = () => {
     confirmAlert({
       title: '⚠ Delete all flight plans',
@@ -137,7 +134,6 @@ const App = () => {
       <main className="main">
         <div className="main--left-column">
           <Map
-            handleMouseDown={handleMouseDownOnMap}
             handleMouseUp={handleMouseUpOnMap}
             handleClearButtonClick={handleClearButtonClickOnMap}
             points={points}
